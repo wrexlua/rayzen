@@ -11,6 +11,3 @@
 
 > [!WARNING]  
 > Licensed.
-
-> [!CAUTION]
-> You can banned roblox for exploiting.
