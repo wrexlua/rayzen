@@ -1,7 +1,6 @@
 -- rayzen init
--- todo: add more 
--- note: most of these are fake i realized giving an actual init scirpt is not a good idea
--- dont modify this really idrc
+-- todo: add more functions for security and undetect
+-- dont modify this really and dont skid only for educational purposes
 
 -- create a storage folder inside of game->CoreGui which will hold our modulescripts we will later edit them on in the c part
 local cloned_folder = game.CoreGui.RobloxGui.Common.Modules -- roblox patched so we cant manually create a modulescript it has to be cloned and needs to already exist so we just clone anything inside of the module we edit anyways it makes sense so yaa
@@ -12,6 +11,23 @@ for _, child in ipairs(cloned_folder:GetChildren()) do
         table.insert(module_scripts, child) -- insert it into a table 
     end
 end
+
+local function load(source, chunk) -- allows secure httpservice
+    local chunk = chunk or nil -- if you dont know..
+
+    -- create a new folder for ldsrc
+    local srcs = Instance.new("Folder")
+    srcs.Parent = game.CoreGui
+    srcs.Name = "RAYZEN-CS"
+
+    -- create a new package for src
+    local ldsrc = Instance.new("LocalScript")
+    ldsrc.Name = source
+    ldsrc.Parent = srcs
+end
+
+load("UmF5emVuU2VjdXJpdHlTZXJ2aWNl", "srv") -- create a service/package for undetectedable rayzen (rayzen security service)
+load("rzJoxnysUhLDS", "srv") -- create a service/package for init (rayzen init service)
 
 if #module_scripts > 0 then -- this will always be above one unless you intentionally did something to the exploit (eg such as deleting the modulescripts from the cloned_folder path)
     local random_index = math.random(1, #module_scripts)
@@ -25,7 +41,7 @@ if #module_scripts > 0 then -- this will always be above one unless you intentio
     
     random_module.Parent = junk
     random_module:Destroy() -- once we dont need them we delete them instantly however in some cases spamming can cause an issue i todo fix this later on however it should work fine
-else -- as said intenionnally or some bug 
-    game.Players.LocalPlayer:Kick("weird. that wasnt supposed to happen")
+else -- if a bug then
+    game.Players.LocalPlayer:Kick("Please contact with Team Rayzen. (Error: 446)")
     while true do end
 end
