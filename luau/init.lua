@@ -8,6 +8,9 @@ if script.Name ~= "LuaSocialLibrariesDeps" and script.Name ~= "JestGlobals" and 
 script.Parent = nil;
 end
 
+task.spawn(function(...) 
+repeat wait() until game:IsLoaded()
+
 -- create a storage folder inside of game->CoreGui which will hold our modulescripts we will later edit them on in the c part
 local cloned_folder = game.CoreGui.RobloxGui.Common.Modules -- roblox patched so we cant manually create a modulescript it has to be cloned and needs to already exist so we just clone anything inside of the module we edit anyways it makes sense so yaa
 
