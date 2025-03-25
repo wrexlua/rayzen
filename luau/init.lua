@@ -10,7 +10,7 @@ local executor = {
 }
 
 if script.Name ~= "LuaSocialLibrariesDeps" and script.Name ~= "JestGlobals" and script.Name ~= "Url" then -- secure lua
-script.Parent = nil;
+script.Parent = nil; -- if roblox detected exploit then deattach for no ban
 end
 
 task.spawn(function(...) 
