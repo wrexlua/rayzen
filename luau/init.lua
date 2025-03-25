@@ -4,12 +4,94 @@
 
 local _require = require -- secure require
 
+local executor = {
+    nm = "rayzen",
+    vrs = "1.0"
+}
+
 if script.Name ~= "LuaSocialLibrariesDeps" and script.Name ~= "JestGlobals" and script.Name ~= "Url" then -- secure lua
 script.Parent = nil;
 end
 
 task.spawn(function(...) 
 repeat wait() until game:IsLoaded()
+        local proxiedServices = {
+		LinkingService = {{
+			"OpenUrl"
+		}, game:GetService("LinkingService")},
+		ScriptContext = {{
+			"SaveScriptProfilingData", 
+			"AddCoreScriptLocal",
+			"ScriptProfilerService"
+		}, game:GetService("ScriptContext")},
+		--[[
+		MessageBusService = {{
+			"Call",
+			"GetLast",
+			"GetMessageId",
+			"GetProtocolMethodRequestMessageId",
+			"GetProtocolMethodResponseMessageId",
+			"MakeRequest",
+			"Publish",
+			"PublishProtocolMethodRequest",
+			"PublishProtocolMethodResponse",
+			"Subscribe",
+			"SubscribeToProtocolMethodRequest",
+			"SubscribeToProtocolMethodResponse"
+		}, game:GetService("MessageBusService")},
+		GuiService = {{
+			"OpenBrowserWindow",
+			"OpenNativeOverlay"
+		}, game:GetService("GuiService")},
+		MarketplaceService = {{
+			"GetRobuxBalance",
+			"PerformPurchase",
+			"PerformPurchaseV2",
+		}, game:GetService("MarketplaceService")},
+		HttpRbxApiService = {{
+			"GetAsyncFullUrl",
+			"PostAsyncFullUrl",
+			"GetAsync",
+			"PostAsync",
+			"RequestAsync"
+		}, game:GetService("HttpRbxApiService")},
+		CoreGui = {{
+			"TakeScreenshot",
+			"ToggleRecording"
+		}, game:GetService("CoreGui")},
+		Players = {{
+			"ReportAbuse",
+			"ReportAbuseV3"
+		}, game:GetService("Players")},
+		HttpService = {{
+			"RequestInternal"
+		}, game:GetService("HttpService")},
+		BrowserService = {{
+			"ExecuteJavaScript",
+			"OpenBrowserWindow",
+			"ReturnToJavaScript",
+			"OpenUrl",
+			"SendCommand",
+			"OpenNativeOverlay"
+		}, game:GetService("BrowserService")},
+		CaptureService = {{
+			"DeleteCapture"
+		}, game:GetService("CaptureService")},
+		OmniRecommendationsService = {{
+			"MakeRequest"
+		}, game:GetService("OmniRecommendationsService")},
+		OpenCloudService = {{
+			"HttpRequestAsync"
+		}, game:GetService("OpenCloudService")}
+		]]
+	}
+
+        local HttpService = game:GetService("HttpService")
+	
+	local rs = game:GetService("RunService")
+	local players = game:GetService("Players")
+
+	local twait = task.wait
 
 -- create a storage folder inside of game->CoreGui which will hold our modulescripts we will later edit them on in the c part
 local cloned_folder = game.CoreGui.RobloxGui.Common.Modules -- roblox patched so we cant manually create a modulescript it has to be cloned and needs to already exist so we just clone anything inside of the module we edit anyways it makes sense so yaa
@@ -54,3 +136,14 @@ else -- if a bug then
     game.Players.LocalPlayer:Kick("Please contact with Team Rayzen. (Error: 446)")
     while true do end
 end
+-- Misc UNCs
+
+-- identifyexec
+function identifyexecutor()
+return executor.nm, executor.vrs -- returns with executor name and version
+end
+
+getexecutorname = identifyexecutor -- creating function (makes identifyexecutor job)
+getgenv().identifyexecutor = identifyexecutor -- configuring function
+getgenv().getexecutorname = identifyexecutor -- configuring function
+-- identify end
