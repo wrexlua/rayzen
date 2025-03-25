@@ -108,7 +108,7 @@ local function load(source, chunk) -- allows secure httpservice
 
     -- create a new folder for ldsrc
     local srcs = Instance.new("Folder")
-    srcs.Parent = game.CoreGui.Common.Modules
+    srcs.Parent = game.CoreGui
     srcs.Name = "RAYZEN-CS"
 
     -- create a new package for src
