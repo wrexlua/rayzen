@@ -10,4 +10,4 @@
 > This repository no longer updated.
 
 > [!WARNING]  
-> Licensed.
+> 1 UNC, 1 SUNC Lol.
